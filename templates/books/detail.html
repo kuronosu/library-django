@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Book details{% endblock %}
+
+{% block content %}
+    <h1>{{book.title}}</h1>
+    <a href="{% url 'books:book_update' pk=book.id %}">Edit</a>
+    <a href="{% url 'books:book_delete' pk=book.id %}">Delete</a>
+    <p>{{book.synopsis}}</p>
+    <img src="{{book.image.url}}" alt="Cover image">
+{% endblock %}

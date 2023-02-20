@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Book list{% endblock %}
+
+{% block styles %}
+    <style>
+        .book > a {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Books</h1>
+    <ul>
+        {% for book in books %}
+            <li class="book">
+                <a href="{% url 'books:book_detail' pk=book.id %}">{{ book.title }}</a>
+                <a href="{% url 'books:book_update' pk=book.id %}">Update</a>
+                <a href="{% url 'books:book_delete' pk=book.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
