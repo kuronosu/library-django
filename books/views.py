@@ -15,6 +15,7 @@ class DetailBookView(DetailView):
 
 class ListBookView(ListView):
     model = Book
+    queryset = Book.objects.all().order_by('-pk')
     paginate_by = 20
     template_name = 'books/list.html'
     context_object_name = 'books'

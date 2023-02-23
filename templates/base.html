@@ -22,6 +22,15 @@
       <li class="mr-6 m-5">
         <a class="hover:text-blue-800 {% if url_name == 'book_create' %}text-blue-700{% else %}text-blue-500{% endif %}" href="{% url 'books:book_create' %}">Create book</a>
       </li>
+      {% if user.is_authenticated %}
+      <li class="ml-auto mr-6 m-5">
+        <a class="hover:text-blue-800 text-blue-500" href="{% url 'logout' %}">Logout</a>
+      </li>
+      {% else %}
+      <li class="ml-auto mr-6 m-5">
+        <a class="hover:text-blue-800 {% if url_name == 'login' %}text-blue-700{% else %}text-blue-500{% endif %}" href="{% url 'login' %}">Login</a>
+      </li>
+      {% endif %}
     </ul>
   </nav>
   {% endwith %}
