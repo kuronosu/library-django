@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{%block title%}{%endblock%}</title>
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <script src="https://cdn.tailwindcss.com"></script>
   {%block styles%}
   {%endblock%}
   {%block scripts%}
@@ -13,12 +13,18 @@
 
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="{% url 'books:book_list' %}">Books</a></li>
-      <li><a href="{% url 'books:book_create' %}">Create book</a></li>
+  {% with request.resolver_match.url_name as url_name %}
+  <nav class="border-b-2 border-gray-200 ">
+    <ul class="flex">
+      <li class="mr-6 m-5">
+        <a class="hover:text-blue-800 {% if url_name == 'book_list' %}text-blue-700{% else %}text-blue-500{% endif %}" href="{% url 'books:book_list' %}">Books</a>
+      </li>
+      <li class="mr-6 m-5">
+        <a class="hover:text-blue-800 {% if url_name == 'book_create' %}text-blue-700{% else %}text-blue-500{% endif %}" href="{% url 'books:book_create' %}">Create book</a>
+      </li>
     </ul>
   </nav>
+  {% endwith %}
   {%block content%}
   {%endblock%}
 </body>

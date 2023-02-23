@@ -4,22 +4,52 @@
 
 {% block styles %}
     <style>
-        .book > a {
+        .book > a, img {
             margin-left: 5px;
             margin-right: 5px;
         }
+        .list > h2{
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
     </style>
 {% endblock %}
 
 {% block content %}
-    <h1>Books</h1>
-    <ul>
-        {% for book in books %}
-            <li class="book">
-                <a href="{% url 'books:book_detail' pk=book.id %}">{{ book.title }}</a>
-                <a href="{% url 'books:book_update' pk=book.id %}">Update</a>
-                <a href="{% url 'books:book_delete' pk=book.id %}">Delete</a>
-            </li>
-        {% endfor %}
-    </ul>
+<div class=" w-full border-solid " >
+    <div class="flex flex-col w">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden flex justify-center">
+              <table class="w-4/5 text-left text-sm font-light">
+                <thead class="border-b font-medium dark:border-neutral-500">
+                  <tr>
+                    <th scope="col" class="px-6 py-4">Id</th>
+                    <th scope="col" class="px-6 py-4">Title</th>
+                    <th scope="col" class="px-6 py-4">Image</th>
+                    <th scope="col" class="px-6 py-4">Descripcion</th>
+                    <th scope="col" class="px-24 py-4">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr class="border-b dark:border-neutral-500 dark:md:hover:bg-gray-200">
+                        <td class="whitespace-nowrap px-6 py-4 font-medium">{{ book.pk }}</td>
+                        <td class=" px-6 py-4"><a href="{% url 'books:book_detail' pk=book.id %}">{{ book.title }}</a></td>
+                        <td class="whitespace-nowrap -px-6 py-4"><img class="h-30 w-20" href="{% url 'books:book_detail' pk=book.id %}" src="{{ book.image.url }}" ></img></td>
+                        <td class="px-6 py-4">{{ book.synopsis }}</td>
+                        <td class="whitespace-nowrap px-6 ">
+                            <a class="rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"href="{% url 'books:book_update' pk=book.id %}">Update</a>
+                            <a class="rounded-lg bg-red-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" href="{% url 'books:book_delete' pk=book.id %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
 {% endblock %}
