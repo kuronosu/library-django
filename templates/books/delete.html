@@ -3,9 +3,16 @@
 {% block title %}Book create{% endblock %}
 
 {% block content %}
-    <h1>Delete book {{book.title}}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
+    <div class="w-full flex justify-center mt-12 " >
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" >
+            {% csrf_token %}
+            <h1 class="text-2xl pb-6 " >Are you sure you want to delete "{{book.title}}" ?</h1>
+            <div class="flex flex-row" >
+                <img class="max-h-96 max-w-96 " src="{{book.image.url}}" alt="Cover image">
+                <p class="ml-2 " >{{book.synopsis}}</p>
+            </div>
+            <button type="submit" class=" mt-6 rounded-lg bg-red-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" >Delete</button>
+            <button type="button" class="rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" onclick="history.back()" >Cancel</button>
+        </form>
+    </div>
 {% endblock %}
